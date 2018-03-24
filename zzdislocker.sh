@@ -58,5 +58,8 @@ fi
 
 
 printTitle "Detecting Bitlocked disk"
-FDISK="$(fdisk -l | grep 'sd')"
-echo $FDISK
+FDISK="$(fdisk -l | grep 'Linux')"
+ZZDISK="$(echo $FDISK | grep -Po '/\Ksd[a-z][0-9]')"
+echo $ZZDISK
+
+
