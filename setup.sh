@@ -14,7 +14,7 @@ mkdir -p "/etc/turbolab.it/"
 
 ## Pre-requisites
 apt update
-apt install git -y
+apt install git gcc cmake make libfuse-dev libmbedtls-dev ruby-dev -y
 
 ## Install/update
 echo ""
@@ -39,28 +39,23 @@ if [ ! -e "/usr/bin/${SCRIPT_NAME}" ]; then
 fi
 
 ## Install dislocker
-apt install gcc cmake make libfuse-dev libmbedtls-dev ruby-dev -y
-
 INSTALL_DIR_PARENT="/opt/"
-INSTALL_DIR=${INSTALL_DIR_PARENT}dislocker/
+INSTALL_DIR=${INSTALL_DIR_PARENT}dislocker_src_temp/
 
 echo ""
-if [ ! -d "$INSTALL_DIR" ]; then
-	echo "Installing..."
-	echo "-------------"
-	mkdir -p "$INSTALL_DIR_PARENT"
-	cd "$INSTALL_DIR_PARENT"
-	git clone https://github.com/Aorimn/dislocker.git
-else
-	echo "Updating..."
-	echo "----------"
+if [ -d "$INSTALL_DIR" ]; then
+	rm -rf "${INSTALL_DIR}"
 fi
 
+mkdir -p "$INSTALL_DIR_PARENT"
+cd "$INSTALL_DIR_PARENT"
+git clone https://github.com/Aorimn/dislocker.git
 cd "$INSTALL_DIR"
 git pull
 cmake .
 make
-sudo make install
+make install
+rm -rf "${INSTALL_DIR}"
 
 
 ## Restore working directory
