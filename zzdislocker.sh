@@ -58,5 +58,24 @@ fi
 
 
 printTitle "Detecting Bitlocked disk"
-FDISK="$(fdisk -l | grep 'sd')"
-echo $FDISK
+FDISK="$(fdisk -l | grep 'HPFS/NTFS/exFAT')"
+ZZDISK="$(echo $FDISK | grep -Po '/\Ksd[a-z][0-9]')"
+echo $ZZDISK
+
+printTitle "Test for stored password"
+file="/etc/hosts"
+if [ -f "$file" ]
+then
+	echo "$file found."
+else
+	echo "$file not found."
+fi
+
+printTitle "Dislocking"
+dislocker -r -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- /media/bitlocker
+
+printTitle "Attempting mount"
+mount -r -o loop /media/bitlocker/dislocker-file /media/mount
+
+printTitle "Finish"
+echo "Your unlocked drive is available as /media/mount"
