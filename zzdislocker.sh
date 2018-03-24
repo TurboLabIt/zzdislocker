@@ -75,7 +75,19 @@ mkdir -p "$MYDRIVE_MOUNT_FULLPATH"
 printTitle "Detecting Bitlocked disk"
 FDISK="$(fdisk -l | grep 'HPFS/NTFS/exFAT')"
 ZZDISK="$(echo $FDISK | grep -Po '/\Ksd[a-z][0-9]')"
-echo $ZZDISK
+
+if [ -z "$ZZDISK" ]; then
+
+	printTitle "Disk detection FAILED"
+	echo "Unable to detect a Bitlocked Windows drive. Now exiting. Please open an issue on https://github.com/TurboLabIt/${SCRIPT_NAME}"
+
+	echo $(date)
+	echo "$FRAME"
+	exit
+else
+	printTitle "Bitlocked drive DETECTED"
+	echo "Will now mount $ZZDISK ($FDISK)"
+fi
 
 printTitle "Dislocking"
 dislocker -r -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- "${DISLOCKER_MOUNT_FULLPATH}"
@@ -85,3 +97,5 @@ mount -r -o loop "${DISLOCKER_MOUNT_FULLPATH}dislocker-file" "${MYDRIVE_MOUNT_FU
 
 printTitle "Finish"
 echo "Your unlocked drive is available as ${MYDRIVE_MOUNT_FULLPATH}"
+echo $(date)
+echo "$FRAME"
