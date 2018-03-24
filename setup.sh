@@ -62,9 +62,6 @@ cmake .
 make
 sudo make install
 
-if [ ! -e "/usr/bin/dislocker" ]; then
-	ln -s ${INSTALL_DIR}${SCRIPT_NAME}.sh /usr/bin/dislocker
-fi
 
 ## Restore working directory
 cd $WORKING_DIR_ORIGINAL
