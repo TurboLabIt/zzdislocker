@@ -40,14 +40,13 @@ fi
 
 ## Install dislocker
 INSTALL_DIR_PARENT="/opt/"
-INSTALL_DIR=${INSTALL_DIR_PARENT}dislocker_src_temp/
+INSTALL_DIR=${INSTALL_DIR_PARENT}dislocker/
 
 echo ""
 if [ -d "$INSTALL_DIR" ]; then
 	rm -rf "${INSTALL_DIR}"
 fi
 
-mkdir -p "$INSTALL_DIR_PARENT"
 cd "$INSTALL_DIR_PARENT"
 git clone https://github.com/Aorimn/dislocker.git
 cd "$INSTALL_DIR"
