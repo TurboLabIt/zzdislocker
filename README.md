@@ -17,3 +17,10 @@ Connect your Bitlocker-drive, let it spin for a minute, then execute `zzdislocke
 Provide the Bitlocker password when asked.
 
 Your drive will then be mounted into `/media/mount/` and popup into the GUI.
+
+# Password saving
+If your main Linux partition is itself encrypted, you can store your Bitlocker password for automatic unlocking and additional convenience. Copy the provided sample configuration file (`zzdislocker.default.conf`) to your own `zzdislocker.conf` and set `BITLOCKER_PASSWORD=myBitlockerPassword`:
+
+`sudo cp /usr/local/turbolab.it/zzdislocker/zzdislocker.default.conf /etc/turbolab.it/zzdislocker.conf && sudo nano /etc/turbolab.it/zzdislocker.conf`
+
+Please note that this is a big security risk: be sure to know what you're doing.
