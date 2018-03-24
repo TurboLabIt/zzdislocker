@@ -90,10 +90,10 @@ else
 fi
 
 printTitle "Dislocking"
-dislocker -r -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- "${DISLOCKER_MOUNT_FULLPATH}"
+dislocker -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- "${DISLOCKER_MOUNT_FULLPATH}"
 
 printTitle "Attempting mount"
-mount -r -o loop "${DISLOCKER_MOUNT_FULLPATH}dislocker-file" "${MYDRIVE_MOUNT_FULLPATH}"
+mount -o loop "${DISLOCKER_MOUNT_FULLPATH}dislocker-file" "${MYDRIVE_MOUNT_FULLPATH}"
 
 printTitle "Finish"
 echo "Your unlocked drive is available as ${MYDRIVE_MOUNT_FULLPATH}"
