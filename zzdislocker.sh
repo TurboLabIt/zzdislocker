@@ -57,25 +57,31 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 
+printTitle "Read config (if any)"
+for CONFIGFILE_FULLPATH in "$CONFIGFILE_FULLPATH_DEFAULT" "$CONFIGFILE_MYSQL_FULLPATH_ETC" "$CONFIGFILE_FULLPATH_ETC" "$CONFIGFILE_FULLPATH_DIR" "$CONFIGFILE_PROFILE_FULLPATH_ETC" "$CONFIGFILE_PROFILE_FULLPATH_DIR"
+do
+	if [ -f "$CONFIGFILE_FULLPATH" ]; then
+		source "$CONFIGFILE_FULLPATH"
+	fi
+done
+
+printTitle "Creating folders"
+DISLOCKER_MOUNT_FULLPATH=/media/dislocker/dislocked/
+MYDRIVE_MOUNT_FULLPATH=/media/dislocker/MYDRIVE/
+
+mkdir -p "$DISLOCKER_MOUNT_FULLPATH"
+mkdir -p "$MYDRIVE_MOUNT_FULLPATH"
+
 printTitle "Detecting Bitlocked disk"
 FDISK="$(fdisk -l | grep 'HPFS/NTFS/exFAT')"
 ZZDISK="$(echo $FDISK | grep -Po '/\Ksd[a-z][0-9]')"
 echo $ZZDISK
 
-printTitle "Test for stored password"
-file="/etc/hosts"
-if [ -f "$file" ]
-then
-	echo "$file found."
-else
-	echo "$file not found."
-fi
-
 printTitle "Dislocking"
-dislocker -r -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- /media/bitlocker
+dislocker -r -V /dev/${ZZDISK} -u"${BITLOCKER_PASSWORD}" -- "${DISLOCKER_MOUNT_FULLPATH}"
 
 printTitle "Attempting mount"
-mount -r -o loop /media/bitlocker/dislocker-file /media/mount
+mount -r -o loop "${DISLOCKER_MOUNT_FULLPATH}dislocker-file" "${MYDRIVE_MOUNT_FULLPATH}"
 
 printTitle "Finish"
-echo "Your unlocked drive is available as /media/mount"
+echo "Your unlocked drive is available as ${MYDRIVE_MOUNT_FULLPATH}"

@@ -38,6 +38,10 @@ if [ ! -e "/usr/bin/${SCRIPT_NAME}" ]; then
 	ln -s ${INSTALL_DIR}${SCRIPT_NAME}.sh /usr/bin/${SCRIPT_NAME}
 fi
 
+if [ ! -e "/usr/bin/zzundislocker" ]; then
+        ln -s ${INSTALL_DIR}zzundislocker.sh /usr/bin/zzundislocker
+fi
+
 ## Install dislocker
 INSTALL_DIR_PARENT="/opt/"
 INSTALL_DIR=${INSTALL_DIR_PARENT}dislocker/
