@@ -16,7 +16,9 @@ Connect your Bitlocker-drive, let it spin for a minute, then execute `zzdislocke
 
 Provide the Bitlocker password when asked.
 
-Your drive will then be mounted into `/media/mount/` and popup into the GUI.
+Your drive will then be mounted into `/media/dislocker/MYDRIVE/` and popup into the GUI.
+
+Wen you're done, close everything and unmount the drive with a single command: `zzundislocker`.
 
 # Password saving
 If your main Linux partition is itself encrypted, you can store your Bitlocker password for automatic unlocking and additional convenience. Copy the provided sample configuration file (`zzdislocker.default.conf`) to your own `zzdislocker.conf` and set `BITLOCKER_PASSWORD=myBitlockerPassword`:
