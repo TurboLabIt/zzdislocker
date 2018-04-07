@@ -38,6 +38,9 @@ if ! [ $(id -u) = 0 ]; then
 		exit
 fi
 
+printTitle "Switching to home"
+cd "$HOME"
+
 printTitle "Unmounting"
 DISLOCKER_MOUNT_FULLPATH=/media/dislocker/dislocked/
 MYDRIVE_MOUNT_FULLPATH=/media/dislocker/MYDRIVE/
