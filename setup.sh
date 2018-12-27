@@ -16,6 +16,10 @@ mkdir -p "/etc/turbolab.it/"
 apt update
 apt install git gcc cmake make libfuse-dev libmbedtls-dev ruby-dev -y
 
+## Workaround for missing Ruby header
+# https://github.com/Aorimn/dislocker/issues/150#issuecomment-395337603
+cp /usr/include/x86_64-linux-gnu/ruby-2.5.0/ruby/config.h /usr/include/ruby-2.5.0/ruby/
+
 ## Install/update
 echo ""
 if [ ! -d "$INSTALL_DIR" ]; then
