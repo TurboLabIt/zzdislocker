@@ -9,7 +9,10 @@ A simple wrapper script to make [dislocker](https://github.com/Aorimn/dislocker)
 
 Just execute:
 
-`sudo apt install curl -y && curl -s https://raw.githubusercontent.com/TurboLabIt/zzdislocker/master/setup.sh | sudo bash`
+```shell
+sudo apt install curl -y && curl -s https://raw.githubusercontent.com/TurboLabIt/zzdislocker/master/setup.sh | sudo bash
+
+````
 
 
 # Run it
