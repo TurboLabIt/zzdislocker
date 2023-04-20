@@ -13,6 +13,6 @@ sudo bash /usr/local/turbolab.it/bash-fx/setup/start.sh ${SCRIPT_NAME}
 fxLinkBin ${INSTALL_DIR}${SCRIPT_NAME}.sh
 fxLinkBin ${INSTALL_DIR}zzundislocker.sh
 
-sudo bash ${INSTALL_DIR}zzdislocker-compile.sh
+sudo bash ${INSTALL_DIR}dislocker-compile.sh
 
 sudo bash /usr/local/turbolab.it/bash-fx/setup/the-end.sh ${SCRIPT_NAME}
