@@ -4,9 +4,12 @@ source "/usr/local/turbolab.it/bash-fx/bash-fx.sh"
 fxHeader "🚀 Compile Dislocker"
 rootCheck
 
+### Universe is required to get some pre-requisites
+add-apt-repository universe
+apt update
+
 ### Pre-requisites
 ## https://github.com/Aorimn/dislocker/blob/master/INSTALL.md#requirements
-apt update
 apt install gcc cmake make libfuse-dev libmbedtls-dev ruby-dev -y
 
 ### Fix for
