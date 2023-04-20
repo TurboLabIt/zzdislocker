@@ -22,6 +22,6 @@ cd "${DSKL_COMPILE_DIR}"
 git clone https://github.com/Aorimn/dislocker.git
 cd dislocker
 cmake . && make && make install
-#rm -rf "${DSKL_COMPILE_DIR}"
+rm -rf "${DSKL_COMPILE_DIR}"
 
 fxEndFooter
